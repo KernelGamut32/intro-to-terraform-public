@@ -2,7 +2,7 @@
 
 # Declare a variable so we can use it.
 variable "region" {
-  default = "us-east-1"
+  default = "us-west-2"
   type    = string
 }
 

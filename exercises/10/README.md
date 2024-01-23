@@ -210,7 +210,7 @@ terraform {
      encrypt         = true
      bucket          = "REPLACE-WITH-YOUR-STATE-BUCKET-NAME"
      dynamodb_table  = "terraform-state-lock-dynamo"
-     region          = us-east-2
+     region          = us-west-2
      key             = "exercise-10/terraform.tfstate"
    }
  }

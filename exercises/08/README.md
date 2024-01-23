@@ -263,9 +263,9 @@ Two very common examples in the AWS provider:
  Outputs:
 
  current_region_availability_zones = [
-     "us-east-2a",
-     "us-east-2b",
-     "us-east-2c",
+     "us-west-2a",
+     "us-west-2b",
+     "us-west-2c",
  ]
  most_recent_ubuntu_ami_id = ami-0d03add87774b12c5
  ```

@@ -1,0 +1,47 @@
+{
+    "Comment": "A description of my state machine",
+    "StartAt": "Lambda Invoke",
+    "States": {
+      "Lambda Invoke": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::lambda:invoke",
+        "OutputPath": "$.Payload",
+        "Parameters": {
+          "Payload.$": "$",
+          "FunctionName": "${DecisionFunction}"
+        },
+        "Next": "Choice"
+      },
+      "Choice": {
+        "Type": "Choice",
+        "Choices": [
+          {
+            "Variable": "$",
+            "StringEquals": "true",
+            "Next": "True Route"
+          }
+        ],
+        "Default": "False Route"
+      },
+      "True Route": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::lambda:invoke",
+        "OutputPath": "$.Payload",
+        "Parameters": {
+          "Payload.$": "$",
+          "FunctionName": "${TrueFunction}"
+        },
+        "End": true
+      },
+      "False Route": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::lambda:invoke",
+        "OutputPath": "$.Payload",
+        "Parameters": {
+          "Payload.$": "$",
+          "FunctionName": "${FalseFunction}"
+        },
+        "End": true
+      }
+    }
+  }
