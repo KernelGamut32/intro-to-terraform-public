@@ -18,9 +18,13 @@ terraform {
 provider "aws" {
 }
 
+resource "aws_s3_bucket" "user_student_alias_bucket" {
+  bucket = "devint-${data.terraform_remote_state.other_project.outputs.bucket_name}"
+}
+
 # declare a resource stanza so we can create something.
 resource "aws_s3_object" "user_student_alias_object" {
-  bucket  = "devint-${var.student_alias}"
+  bucket  = aws_s3_bucket.user_student_alias_bucket.bucket
   key     = "student.alias"
-  content = "This bucket is reserved for ${var.student_alias}"
+  content = "This bucket is reserved for ${var.student_alias} - Nothing up my sleeves"
 }

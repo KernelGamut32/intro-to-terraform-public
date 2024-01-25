@@ -18,6 +18,10 @@ terraform {
 provider "aws" {
 }
 
+resource "aws_s3_bucket" "user_student_alias_bucket" {
+  bucket = "devint-${var.student_alias}"
+}
+
 # declare a resource stanza so we can create something.
 resource "aws_s3_object" "user_student_alias_object" {
   bucket  = "devint-${var.student_alias}"
